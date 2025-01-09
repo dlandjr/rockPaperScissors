@@ -8,6 +8,13 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
+// Function to disable buttons
+function disableButtons() {
+    document.querySelector('#rock').disabled = true;
+    document.querySelector('#paper').disabled = true;
+    document.querySelector('#scissors').disabled = true;
+}
+
 // Function to play one round of the game
 function playRound(playerSelection) {
     const computerSelection = getComputerChoice();
@@ -41,6 +48,13 @@ function playRound(playerSelection) {
         const winner = humanScore === 5 ? "You" : "The Computer";
         resultsDiv.innerHTML += `<p><strong>${winner} won the game!</strong></p>`;
         disableButtons(); // Disable buttons when game is over
+
+        // Popup for refresh
+        setTimeout(() => {
+            if (confirm("Game over! Would you like to play again? Click OK to refresh the page.")) {
+                location.reload();
+            }
+        }, 500);
     }
 }
 
